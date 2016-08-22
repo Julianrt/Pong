@@ -3,12 +3,13 @@ package com.company;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 public class Racquet {
 
     private int x,y;
 
-    private int moveY;
+    protected int moveY;
 
     private final int WIDTH = 16;
 
@@ -51,6 +52,9 @@ public class Racquet {
     public void move(){
         if((moveY==-1 && y>=0) || (moveY==1&&y<=app.getHeight()-HEIGHT))
             y+=moveY;
+    }
+    public Rectangle getBounds(){
+        return new Rectangle(x,y,WIDTH,HEIGHT);
     }
 
 
