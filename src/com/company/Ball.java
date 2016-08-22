@@ -5,17 +5,19 @@ import java.awt.Rectangle;
 
 public class Ball {
 
-     private Game app;
+    private Game app;
 
-    private int x, y, moveX, moveY;
+    private int x, y, moveY;
+
+    public int moveX;
 
     private final int DIAMETER = 8;
 
 
     public Ball(Game app){
         this.app = app;
-        this.x = 20;
-        this.y = 20;
+        this.x = app.getWidth()/2;
+        this.y = 0;
         this.moveX=1;
         this.moveY=-1;
     }
@@ -27,20 +29,50 @@ public class Ball {
 
 
         if(collisionPlayerOne()){
-            x=66;
-            moveX=1;
+            x=app.playerONE.getX()+16;
+            if(app.playerONE.moveY==1){
+                moveX=2;
+                moveY=1;
+            }
+            else if(app.playerONE.moveY==-1){
+                moveX=2;
+                moveY=-1;
+            }
+            else{
+                moveX=1;
+            }
         }
         else if(collisionPlayerTWO()){
-            x=520;
-            moveX=-1;
+            x=app.playerTWO.getX()-DIAMETER;
+            if(app.playerTWO.moveY==1){
+                moveX=-2;
+                moveY=1;
+            }
+            else if(app.playerTWO.moveY==-1){
+                moveX=-2;
+                moveY=-1;
+            }
+            else{
+                moveX=-1;
+            }
         }
         else if(x<=0) {
             app.pointPlayerTwo();
             x = app.getWidth()/2;
+            y=0;
+            moveX=1;
+            if(app.scorePlayerTwo>=5){
+                app.win();
+            }
         }
         else if(x>=app.getWidth()-DIAMETER) {
             app.pointPlayerOne();
             x = app.getWidth() / 2;
+            y=0;
+            moveX=-1;
+            if(app.scorePlayerOne>=5){
+                app.win();
+            }
         }
 
         if (y<=0)

@@ -66,6 +66,10 @@ public class Game extends JPanel{
         playerONE.moveY=0;
         scorePlayerTwo++;
     }
+    public void win(){
+        JOptionPane.showMessageDialog(this,"This player win");
+        System.exit(0);
+    }
 
     public static void main(String[] args) {
         Game app = new Game();

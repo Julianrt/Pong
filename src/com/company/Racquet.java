@@ -44,6 +44,9 @@ public class Racquet {
             }
         };
     }
+    public int getX(){
+        return this.x;
+    }
 
     public void paint(final Graphics2D g2d){
         g2d.fillRect(x,y,WIDTH,HEIGHT);
